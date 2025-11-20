@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="site-container">
-        {settings.logo ? <img src={settings.logo} alt="logo" className="site-logo" /> : <div className="site-logo placeholder">SO</div>}
+        {settings.logo ? <img src={settings.logo} alt="logo" className="site-logo" /> : <img src="/logo.webp" alt="logo" className="site-logo" />}
         <div className="site-title">{settings.siteTitle || "Staff Scheduler"}</div>
 
         <nav className="site-nav" aria-label="Main navigation">
