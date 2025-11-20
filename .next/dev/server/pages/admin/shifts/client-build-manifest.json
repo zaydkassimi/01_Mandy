@@ -1,0 +1,5 @@
+{
+  "/admin/shifts": [
+    "static/chunks/pages/admin/shifts.js"
+  ]
+}
