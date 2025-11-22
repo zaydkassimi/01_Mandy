@@ -378,6 +378,14 @@ function getServerSideProps({ req }) {
             }
         };
     }
+    if (user.role === "admin") {
+        return {
+            redirect: {
+                destination: "/admin",
+                permanent: false
+            }
+        };
+    }
     return {
         props: {
             user

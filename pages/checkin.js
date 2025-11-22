@@ -115,6 +115,9 @@ export function getServerSideProps({ req }) {
   if (!user) {
     return { redirect: { destination: "/login", permanent: false } };
   }
+  if (user.role === "admin") {
+    return { redirect: { destination: "/admin", permanent: false } };
+  }
   return { props: { user } };
 }
 

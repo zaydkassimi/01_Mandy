@@ -745,6 +745,125 @@ function Login() {
                             fileName: "[project]/pages/login.js",
                             lineNumber: 40,
                             columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mt-4 p-3 bg-gray-50 rounded-md border border-gray-100",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-sm text-gray-600 mb-2",
+                                    children: "Demo accounts (use to preview staff experience):"
+                                }, void 0, false, {
+                                    fileName: "[project]/pages/login.js",
+                                    lineNumber: 60,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                    className: "text-sm text-gray-800 list-disc list-inside space-y-1",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                    children: "Admin"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 62,
+                                                    columnNumber: 19
+                                                }, this),
+                                                ": ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "admin"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 62,
+                                                    columnNumber: 43
+                                                }, this),
+                                                " / ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "admin"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 62,
+                                                    columnNumber: 64
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/pages/login.js",
+                                            lineNumber: 62,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                    children: "Staff 1"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 63,
+                                                    columnNumber: 19
+                                                }, this),
+                                                ": ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "staff1@example.com"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 63,
+                                                    columnNumber: 45
+                                                }, this),
+                                                " / ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "password"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 63,
+                                                    columnNumber: 79
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/pages/login.js",
+                                            lineNumber: 63,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                    children: "Staff 2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 64,
+                                                    columnNumber: 19
+                                                }, this),
+                                                ": ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "staff2@example.com"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 64,
+                                                    columnNumber: 45
+                                                }, this),
+                                                " / ",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                    children: "password"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/pages/login.js",
+                                                    lineNumber: 64,
+                                                    columnNumber: 79
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/pages/login.js",
+                                            lineNumber: 64,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/login.js",
+                                    lineNumber: 61,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/pages/login.js",
+                            lineNumber: 59,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {

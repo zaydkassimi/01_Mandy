@@ -2,15 +2,11 @@
   "/": "pages/index.js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
   "/admin": "pages/admin.js",
-  "/admin/expenses": "pages/admin/expenses.js",
-  "/admin/export": "pages/admin/export.js",
-  "/admin/shifts": "pages/admin/shifts.js",
+  "/admin/attendance": "pages/admin/attendance.js",
   "/admin/staff": "pages/admin/staff.js",
-  "/api/admin/expenses": "pages/api/admin/expenses.js",
-  "/api/admin/shifts": "pages/api/admin/shifts.js",
   "/api/admin/users": "pages/api/admin/users.js",
+  "/api/attendance": "pages/api/attendance.js",
   "/api/auth/login": "pages/api/auth/login.js",
   "/api/auth/logout": "pages/api/auth/logout.js",
   "/api/availability": "pages/api/availability.js",
@@ -18,6 +14,5 @@
   "/api/settings": "pages/api/settings.js",
   "/calendar": "pages/calendar.js",
   "/checkin": "pages/checkin.js",
-  "/login": "pages/login.js",
-  "/signup": "pages/signup.js"
+  "/login": "pages/login.js"
 }

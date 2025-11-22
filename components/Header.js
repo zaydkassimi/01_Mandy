@@ -20,9 +20,19 @@ export default function Header() {
 
         <nav className="site-nav" aria-label="Main navigation">
           <a href="/" className="nav-link inline-flex items-center gap-2"><Home size={16} />Home</a>
-          <a href="/calendar" className="nav-link inline-flex items-center gap-2"><Calendar size={16} />Calendar</a>
-          <a href="/checkin" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Check In</a>
-          {user && user.role === "admin" && <a href="/admin/export" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Export</a>}
+          {user && user.role === "admin" ? (
+            <>
+              <a href="/admin" className="nav-link inline-flex items-center gap-2">Dashboard</a>
+              <a href="/admin/staff" className="nav-link inline-flex items-center gap-2">Staff</a>
+              <a href="/admin/shifts" className="nav-link inline-flex items-center gap-2">Shifts</a>
+              <a href="/admin/export" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Export</a>
+            </>
+          ) : (
+            <>
+              <a href="/calendar" className="nav-link inline-flex items-center gap-2"><Calendar size={16} />Calendar</a>
+              <a href="/checkin" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Check In</a>
+            </>
+          )}
           {user ? (
             <Button as="a" href="/api/auth/logout" className="nav-signout inline-flex items-center gap-2"><LogOut size={16} /> Logout</Button>
           ) : (

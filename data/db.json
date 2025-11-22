@@ -10,6 +10,17 @@
       "password": "Zayd123456@",
       "role": "employee"
     }
+    ,
+    {
+      "email": "staff1@example.com",
+      "password": "password",
+      "role": "employee"
+    },
+    {
+      "email": "staff2@example.com",
+      "password": "password",
+      "role": "employee"
+    }
   ],
   "availabilities": [
     {

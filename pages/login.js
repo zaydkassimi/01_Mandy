@@ -55,6 +55,15 @@ export default function Login() {
               <a className="text-sm text-gray-500" href="/signup">Create account</a>
             </div>
           </form>
+
+          <div className="mt-4 p-3 bg-gray-50 rounded-md border border-gray-100">
+            <div className="text-sm text-gray-600 mb-2">Demo accounts (use to preview staff experience):</div>
+            <ul className="text-sm text-gray-800 list-disc list-inside space-y-1">
+              <li><strong>Admin</strong>: <code>admin</code> / <code>admin</code></li>
+              <li><strong>Staff 1</strong>: <code>staff1@example.com</code> / <code>password</code></li>
+              <li><strong>Staff 2</strong>: <code>staff2@example.com</code> / <code>password</code></li>
+            </ul>
+          </div>
         </div>
       </Card>
     </main>

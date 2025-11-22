@@ -2,20 +2,11 @@ self.__BUILD_MANIFEST = {
   "/": [
     "static/chunks/pages/index.js"
   ],
-  "/_error": [
-    "static/chunks/pages/_error.js"
-  ],
   "/admin": [
     "static/chunks/pages/admin.js"
   ],
-  "/admin/expenses": [
-    "static/chunks/pages/admin/expenses.js"
-  ],
-  "/admin/export": [
-    "static/chunks/pages/admin/export.js"
-  ],
-  "/admin/shifts": [
-    "static/chunks/pages/admin/shifts.js"
+  "/admin/attendance": [
+    "static/chunks/pages/admin/attendance.js"
   ],
   "/admin/staff": [
     "static/chunks/pages/admin/staff.js"
@@ -28,9 +19,6 @@ self.__BUILD_MANIFEST = {
   ],
   "/login": [
     "static/chunks/pages/login.js"
-  ],
-  "/signup": [
-    "static/chunks/pages/signup.js"
   ],
   "__rewrites": {
     "afterFiles": [],
