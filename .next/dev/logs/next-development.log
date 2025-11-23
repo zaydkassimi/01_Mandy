@@ -1,22 +1,3 @@
-[00:00:01.950] Server  LOG      ✓ Ready in 1329ms
-[00:01:35.857] Server  LOG      ✓ Compiled in 70ms
-[00:04:59.687] Server  LOG      ✓ Compiled in 201ms
-[00:05:10.465] Server  LOG      ✓ Compiled in 87ms
-[00:05:43.320] Server  LOG      ✓ Compiled in 139ms
-[00:06:57.352] Server  LOG      ✓ Compiled in 224ms
-[00:08:55.186] Server  LOG      ✓ Compiled in 104ms
-[00:09:48.601] Server  LOG      ✓ Compiled in 170ms
-[00:10:03.854] Server  LOG      ✓ Compiled in 140ms
-[00:10:26.534] Server  LOG      ✓ Compiled in 75ms
-[00:10:38.215] Server  LOG      ✓ Compiled in 37ms
-[00:15:58.175] Server  LOG      ✓ Compiled in 23ms
-[00:16:27.182] Server  LOG      ✓ Compiled in 52ms
-[00:16:47.035] Server  LOG      ✓ Compiled in 61ms
-[00:17:04.571] Server  LOG      ✓ Compiled in 82ms
-[00:17:36.991] Server  LOG      ✓ Compiled in 69ms
-[00:20:25.012] Server  LOG      ✓ Compiled in 32ms
-[00:21:03.850] Server  LOG      ✓ Compiled in 88ms
-[00:22:18.166] Browser LOG     Refreshing page data due to server-side change
-[00:23:42.615] Server  LOG      ✓ Compiled in 192ms
-[00:24:45.979] Server  LOG      ✓ Compiled in 219ms
-[00:25:03.362] Server  LOG      ✓ Compiled in 140ms
+[00:00:03.000] Server  LOG      ✓ Ready in 1923ms
+[00:03:26.920] Server  LOG      ✓ Compiled in 135ms
+[00:08:44.879] Server  LOG      ✓ Compiled in 39ms

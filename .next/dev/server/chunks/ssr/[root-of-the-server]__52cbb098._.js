@@ -246,6 +246,15 @@ function Header() {
                                     fileName: "[project]/components/Header.js",
                                     lineNumber: 35,
                                     columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                    href: "/expenses",
+                                    className: "nav-link inline-flex items-center gap-2",
+                                    children: "Expenses"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Header.js",
+                                    lineNumber: 36,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true),
@@ -258,14 +267,14 @@ function Header() {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/components/Header.js",
-                                    lineNumber: 39,
+                                    lineNumber: 40,
                                     columnNumber: 107
                                 }, this),
                                 " Logout"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Header.js",
-                            lineNumber: 39,
+                            lineNumber: 40,
                             columnNumber: 13
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                             href: "/login",
@@ -275,14 +284,14 @@ function Header() {
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/components/Header.js",
-                                    lineNumber: 41,
+                                    lineNumber: 42,
                                     columnNumber: 82
                                 }, this),
                                 "Sign in"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Header.js",
-                            lineNumber: 41,
+                            lineNumber: 42,
                             columnNumber: 13
                         }, this)
                     ]

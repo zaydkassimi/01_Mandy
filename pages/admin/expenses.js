@@ -13,7 +13,24 @@ export default function AdminExpenses({ user }) {
 
   useEffect(() => {
     fetch("/api/admin/expenses").then((r) => r.json()).then((d) => { if (d.ok) setList(d.expenses || []); });
+    async function poll() {
+      const res = await fetch("/api/admin/expenses");
+      const d = await res.json();
+      if (d.ok) {
+        // compute new items
+        if (prevExpCount > 0 && (d.expenses || []).length > prevExpCount) {
+          setNewExpenses((d.expenses || []).length - prevExpCount);
+        }
+        setPrevExpCount((d.expenses || []).length);
+        setList(d.expenses || []);
+      }
+    }
+    poll();
+    const id = setInterval(poll, 10000);
+    return () => clearInterval(id);
   }, []);
+  const [prevExpCount, setPrevExpCount] = useState(0);
+  const [newExpenses, setNewExpenses] = useState(0);
 
   async function add() {
     await fetch("/api/admin/expenses", {
@@ -92,6 +109,7 @@ export default function AdminExpenses({ user }) {
           </tbody>
         </table>
         {message && <div className="mt-3 p-3 rounded-md bg-green-50 text-green-800">{message}</div>}
+        {newExpenses > 0 && <div className="mt-3"><span className="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded">New: {newExpenses}</span> <button className="ml-2 text-sm" onClick={() => setNewExpenses(0)}>Clear</button></div>}
       </div>
     </main>
   );

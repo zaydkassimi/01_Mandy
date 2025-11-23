@@ -3,7 +3,7 @@ R.c("server/chunks/ssr/node_modules_next_dist_b9a4b96b._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__4f0377f1._.js")
 R.c("server/chunks/ssr/node_modules_186c80ea._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__e6a4d965._.js")
-R.c("server/chunks/ssr/node_modules_6bbe1b12._.js")
+R.c("server/chunks/ssr/node_modules_1b5c93ce._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__52cbb098._.js")
 R.m("[project]/node_modules/next/dist/esm/build/templates/pages.js { INNER_PAGE => \"[project]/pages/admin/availability.js [ssr] (ecmascript)\", INNER_DOCUMENT => \"[project]/node_modules/next/document.js [ssr] (ecmascript)\", INNER_APP => \"[project]/pages/_app.js [ssr] (ecmascript)\" } [ssr] (ecmascript)")
 module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/pages.js { INNER_PAGE => \"[project]/pages/admin/availability.js [ssr] (ecmascript)\", INNER_DOCUMENT => \"[project]/node_modules/next/document.js [ssr] (ecmascript)\", INNER_APP => \"[project]/pages/_app.js [ssr] (ecmascript)\" } [ssr] (ecmascript)").exports

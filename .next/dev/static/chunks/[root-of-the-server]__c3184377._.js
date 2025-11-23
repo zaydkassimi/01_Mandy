@@ -582,10 +582,20 @@ function Expenses() {
     const [date, setDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [amount, setAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [note, setNote] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [receiptFile, setReceiptFile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     async function submit(e) {
         e.preventDefault();
         setMessage("");
+        // prepare payload, include receipt as base64 if present
+        let receiptData = null;
+        if (receiptFile) {
+            receiptData = await new Promise((resolve)=>{
+                const reader = new FileReader();
+                reader.onload = ()=>resolve(reader.result);
+                reader.readAsDataURL(receiptFile);
+            });
+        }
         const res = await fetch("/api/expenses", {
             method: "POST",
             headers: {
@@ -594,7 +604,8 @@ function Expenses() {
             body: JSON.stringify({
                 date,
                 amount,
-                note
+                note,
+                receipt: receiptData
             })
         });
         const data = await res.json();
@@ -613,7 +624,7 @@ function Expenses() {
                 children: "Submit Expense"
             }, void 0, false, {
                 fileName: "[project]/pages/expenses.js",
-                lineNumber: 32,
+                lineNumber: 42,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Card$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -627,7 +638,7 @@ function Expenses() {
                             children: "Date"
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 35,
+                            lineNumber: 45,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Input$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -636,7 +647,7 @@ function Expenses() {
                             onChange: (e)=>setDate(e.target.value)
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 36,
+                            lineNumber: 46,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -644,7 +655,7 @@ function Expenses() {
                             children: "Amount (GBP)"
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 37,
+                            lineNumber: 47,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Input$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -653,7 +664,7 @@ function Expenses() {
                             placeholder: "0.00"
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 38,
+                            lineNumber: 48,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -661,7 +672,7 @@ function Expenses() {
                             children: "Note"
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 39,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Input$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -670,7 +681,24 @@ function Expenses() {
                             placeholder: "Reason or receipt info"
                         }, void 0, false, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 40,
+                            lineNumber: 50,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                            className: "text-sm font-medium text-gray-700",
+                            children: "Receipt (optional)"
+                        }, void 0, false, {
+                            fileName: "[project]/pages/expenses.js",
+                            lineNumber: 51,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            type: "file",
+                            accept: "image/*,application/pdf",
+                            onChange: (e)=>setReceiptFile(e.target.files[0])
+                        }, void 0, false, {
+                            fileName: "[project]/pages/expenses.js",
+                            lineNumber: 52,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -680,7 +708,7 @@ function Expenses() {
                                     children: "Submit expense"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/expenses.js",
-                                    lineNumber: 42,
+                                    lineNumber: 54,
                                     columnNumber: 13
                                 }, this),
                                 message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -688,34 +716,34 @@ function Expenses() {
                                     children: message
                                 }, void 0, false, {
                                     fileName: "[project]/pages/expenses.js",
-                                    lineNumber: 43,
+                                    lineNumber: 55,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/expenses.js",
-                            lineNumber: 41,
+                            lineNumber: 53,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/expenses.js",
-                    lineNumber: 34,
+                    lineNumber: 44,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/expenses.js",
-                lineNumber: 33,
+                lineNumber: 43,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/expenses.js",
-        lineNumber: 31,
+        lineNumber: 41,
         columnNumber: 5
     }, this);
 }
-_s(Expenses, "OSOawt+ruyv9vL71MkAoNtmxa+4=");
+_s(Expenses, "78gkEkoEy0e2FeuqU3ewq5XHsHQ=");
 _c = Expenses;
 var _c;
 __turbopack_context__.k.register(_c, "Expenses");

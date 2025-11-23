@@ -10,6 +10,7 @@ export default function AdminShifts({ user }) {
   const [date, setDate] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
+  const [location, setLocation] = useState("");
   const [capacity, setCapacity] = useState(1);
   const [availabilities, setAvailabilities] = useState([]);
   const { showToast } = useContext(ToastContext);
@@ -23,7 +24,7 @@ export default function AdminShifts({ user }) {
     await fetch("/api/admin/shifts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, date, start, end, capacity })
+      body: JSON.stringify({ title, date, start, end, capacity, location })
     });
     setTitle(""); setDate(""); setStart(""); setEnd(""); setCapacity(1);
     const res = await fetch("/api/admin/shifts"); const j = await res.json();
@@ -61,6 +62,7 @@ export default function AdminShifts({ user }) {
         <div>
           <input placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} /> <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
           <input type="time" value={start} onChange={(e) => setStart(e.target.value)} style={{ marginLeft: 8 }} /> <input type="time" value={end} onChange={(e) => setEnd(e.target.value)} style={{ marginLeft: 8 }} />
+          <input placeholder="location" value={location} onChange={(e) => setLocation(e.target.value)} style={{ marginLeft: 8 }} />
           <input type="number" value={capacity} onChange={(e) => setCapacity(Number(e.target.value))} style={{ width: 80, marginLeft: 8 }} />
           <button className="btn" onClick={add} style={{ marginLeft: 8 }}>Add Shift</button>
         </div>
@@ -71,7 +73,7 @@ export default function AdminShifts({ user }) {
               <tr key={s.id}>
                 <td style={{ padding: 8 }}>{s.title}</td>
                 <td style={{ padding: 8 }}>{s.date}</td>
-                <td style={{ padding: 8 }}>{s.start} - {s.end}</td>
+                <td style={{ padding: 8 }}>{s.start} - {s.end} {s.location ? `• ${s.location}` : ""}</td>
                 <td style={{ padding: 8 }}>{s.capacity}</td>
                 <td style={{ padding: 8 }}>
                   <button className="btn secondary" onClick={() => del(s.id)}>Delete</button>

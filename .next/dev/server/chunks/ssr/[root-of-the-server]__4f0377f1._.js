@@ -93,13 +93,25 @@ function AdminAvailability({ user }) {
         return d;
     });
     const [selectedDate, setSelectedDate] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
+    const [prevAvailCount, setPrevAvailCount] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(0);
+    const [newCount, setNewCount] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(0);
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         fetchData();
+        const id = setInterval(fetchData, 10000);
+        return ()=>clearInterval(id);
     }, []);
     async function fetchData() {
         const a = await fetch("/api/admin/availability").then((r)=>r.json());
         const s = await fetch("/api/admin/shifts").then((r)=>r.json());
-        if (a.ok) setAvail(a.availabilities || []);
+        if (a.ok) {
+            const list = a.availabilities || [];
+            // calculate new items since last check
+            if (prevAvailCount > 0 && list.length > prevAvailCount) {
+                setNewCount(list.length - prevAvailCount);
+            }
+            setPrevAvailCount(list.length);
+            setAvail(list);
+        }
         if (s.ok) setShifts(s.shifts || []);
     }
     const { showToast } = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["ToastContext"]);
@@ -164,7 +176,7 @@ function AdminAvailability({ user }) {
                 children: "Staff Availability"
             }, void 0, false, {
                 fileName: "[project]/pages/admin/availability.js",
-                lineNumber: 87,
+                lineNumber: 99,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -172,7 +184,7 @@ function AdminAvailability({ user }) {
                 children: "View staff availability and allocate shifts."
             }, void 0, false, {
                 fileName: "[project]/pages/admin/availability.js",
-                lineNumber: 88,
+                lineNumber: 100,
                 columnNumber: 7
             }, this),
             message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -180,8 +192,38 @@ function AdminAvailability({ user }) {
                 children: message
             }, void 0, false, {
                 fileName: "[project]/pages/admin/availability.js",
-                lineNumber: 89,
+                lineNumber: 101,
                 columnNumber: 19
+            }, this),
+            newCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                className: "mt-3",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                        className: "text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded",
+                        children: [
+                            "New: ",
+                            newCount
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/pages/admin/availability.js",
+                        lineNumber: 102,
+                        columnNumber: 46
+                    }, this),
+                    " ",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                        className: "ml-2 text-sm",
+                        onClick: ()=>setNewCount(0),
+                        children: "Clear"
+                    }, void 0, false, {
+                        fileName: "[project]/pages/admin/availability.js",
+                        lineNumber: 102,
+                        columnNumber: 143
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/pages/admin/availability.js",
+                lineNumber: 102,
+                columnNumber: 24
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                 className: "mt-4",
@@ -195,7 +237,7 @@ function AdminAvailability({ user }) {
                                 children: "Prev"
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/availability.js",
-                                lineNumber: 93,
+                                lineNumber: 106,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -206,7 +248,7 @@ function AdminAvailability({ user }) {
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/availability.js",
-                                lineNumber: 94,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -215,13 +257,13 @@ function AdminAvailability({ user }) {
                                 children: "Next"
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/availability.js",
-                                lineNumber: 95,
+                                lineNumber: 108,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/availability.js",
-                        lineNumber: 92,
+                        lineNumber: 105,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -240,14 +282,14 @@ function AdminAvailability({ user }) {
                                     children: d
                                 }, d, false, {
                                     fileName: "[project]/pages/admin/availability.js",
-                                    lineNumber: 99,
+                                    lineNumber: 112,
                                     columnNumber: 67
                                 }, this)),
                             Array.from({
                                 length: new Date(monthStart.getFullYear(), monthStart.getMonth(), 1).getDay()
                             }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {}, "b" + i, false, {
                                     fileName: "[project]/pages/admin/availability.js",
-                                    lineNumber: 100,
+                                    lineNumber: 113,
                                     columnNumber: 120
                                 }, this)),
                             Array.from({
@@ -269,7 +311,7 @@ function AdminAvailability({ user }) {
                                                     children: day
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/admin/availability.js",
-                                                    lineNumber: 110,
+                                                    lineNumber: 123,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -280,13 +322,13 @@ function AdminAvailability({ user }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/admin/availability.js",
-                                                    lineNumber: 111,
+                                                    lineNumber: 124,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/admin/availability.js",
-                                            lineNumber: 109,
+                                            lineNumber: 122,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -298,12 +340,12 @@ function AdminAvailability({ user }) {
                                                             children: it.email
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/admin/availability.js",
-                                                            lineNumber: 114,
+                                                            lineNumber: 127,
                                                             columnNumber: 113
                                                         }, this)
                                                     }, it.email, false, {
                                                         fileName: "[project]/pages/admin/availability.js",
-                                                        lineNumber: 114,
+                                                        lineNumber: 127,
                                                         columnNumber: 47
                                                     }, this)),
                                                 items.length > 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -315,13 +357,13 @@ function AdminAvailability({ user }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/admin/availability.js",
-                                                    lineNumber: 115,
+                                                    lineNumber: 128,
                                                     columnNumber: 40
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/admin/availability.js",
-                                            lineNumber: 113,
+                                            lineNumber: 126,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -332,25 +374,25 @@ function AdminAvailability({ user }) {
                                                 children: "Manage"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/availability.js",
-                                                lineNumber: 118,
+                                                lineNumber: 131,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/availability.js",
-                                            lineNumber: 117,
+                                            lineNumber: 130,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, key, true, {
                                     fileName: "[project]/pages/admin/availability.js",
-                                    lineNumber: 108,
+                                    lineNumber: 121,
                                     columnNumber: 15
                                 }, this);
                             })
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/availability.js",
-                        lineNumber: 98,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, this),
                     selectedDate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Card$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -366,7 +408,7 @@ function AdminAvailability({ user }) {
                                                 children: "Date"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/availability.js",
-                                                lineNumber: 129,
+                                                lineNumber: 142,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -374,13 +416,13 @@ function AdminAvailability({ user }) {
                                                 children: selectedDate
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/availability.js",
-                                                lineNumber: 130,
+                                                lineNumber: 143,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/admin/availability.js",
-                                        lineNumber: 128,
+                                        lineNumber: 141,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -391,18 +433,18 @@ function AdminAvailability({ user }) {
                                             children: "Close"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/availability.js",
-                                            lineNumber: 133,
+                                            lineNumber: 146,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/availability.js",
-                                        lineNumber: 132,
+                                        lineNumber: 145,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/availability.js",
-                                lineNumber: 127,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -413,7 +455,7 @@ function AdminAvailability({ user }) {
                                         children: "Available staff"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/availability.js",
-                                        lineNumber: 138,
+                                        lineNumber: 151,
                                         columnNumber: 15
                                     }, this),
                                     (byDate[selectedDate] || []).map((it)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -423,7 +465,7 @@ function AdminAvailability({ user }) {
                                                     children: it.email
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/admin/availability.js",
-                                                    lineNumber: 141,
+                                                    lineNumber: 154,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -439,7 +481,7 @@ function AdminAvailability({ user }) {
                                                                     children: "Select shift"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/admin/availability.js",
-                                                                    lineNumber: 144,
+                                                                    lineNumber: 157,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 shifts.filter((s)=>s.date === selectedDate).map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -452,13 +494,13 @@ function AdminAvailability({ user }) {
                                                                         ]
                                                                     }, s.id, true, {
                                                                         fileName: "[project]/pages/admin/availability.js",
-                                                                        lineNumber: 146,
+                                                                        lineNumber: 159,
                                                                         columnNumber: 25
                                                                     }, this))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/admin/availability.js",
-                                                            lineNumber: 143,
+                                                            lineNumber: 156,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -470,43 +512,43 @@ function AdminAvailability({ user }) {
                                                             children: "Assign"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/admin/availability.js",
-                                                            lineNumber: 149,
+                                                            lineNumber: 162,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/admin/availability.js",
-                                                    lineNumber: 142,
+                                                    lineNumber: 155,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, it.email, true, {
                                             fileName: "[project]/pages/admin/availability.js",
-                                            lineNumber: 140,
+                                            lineNumber: 153,
                                             columnNumber: 17
                                         }, this))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/availability.js",
-                                lineNumber: 137,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/availability.js",
-                        lineNumber: 126,
+                        lineNumber: 139,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/availability.js",
-                lineNumber: 91,
+                lineNumber: 104,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/admin/availability.js",
-        lineNumber: 86,
+        lineNumber: 98,
         columnNumber: 5
     }, this);
 }

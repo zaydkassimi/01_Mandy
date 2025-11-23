@@ -17,15 +17,27 @@ export default function AdminAvailability({ user }) {
     return d;
   });
   const [selectedDate, setSelectedDate] = useState(null);
+  const [prevAvailCount, setPrevAvailCount] = useState(0);
+  const [newCount, setNewCount] = useState(0);
 
   useEffect(() => {
     fetchData();
+    const id = setInterval(fetchData, 10000);
+    return () => clearInterval(id);
   }, []);
 
   async function fetchData() {
     const a = await fetch("/api/admin/availability").then((r) => r.json());
     const s = await fetch("/api/admin/shifts").then((r) => r.json());
-    if (a.ok) setAvail(a.availabilities || []);
+    if (a.ok) {
+      const list = a.availabilities || [];
+      // calculate new items since last check
+      if (prevAvailCount > 0 && list.length > prevAvailCount) {
+        setNewCount(list.length - prevAvailCount);
+      }
+      setPrevAvailCount(list.length);
+      setAvail(list);
+    }
     if (s.ok) setShifts(s.shifts || []);
   }
 
@@ -87,6 +99,7 @@ export default function AdminAvailability({ user }) {
       <h1>Staff Availability</h1>
       <p className="small">View staff availability and allocate shifts.</p>
       {message && <div className="mt-3 p-3 rounded-md bg-green-50 text-green-800">{message}</div>}
+      {newCount > 0 && <div className="mt-3"><span className="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded">New: {newCount}</span> <button className="ml-2 text-sm" onClick={() => setNewCount(0)}>Clear</button></div>}
 
       <div className="mt-4">
         <div className="flex items-center gap-4 mb-4">

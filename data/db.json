@@ -9,8 +9,7 @@
       "email": "zaydkassimi01@gmail.com",
       "password": "Zayd123456@",
       "role": "employee"
-    }
-    ,
+    },
     {
       "email": "staff1@example.com",
       "password": "password",
@@ -60,7 +59,17 @@
       "lateRequested": false
     }
   ],
-  "shifts": [],
+  "shifts": [
+    {
+      "id": "1763907393929-949",
+      "title": "No worries",
+      "date": "2012-12-12",
+      "start": "12:12",
+      "end": "00:12",
+      "capacity": 1,
+      "location": "Red Dead"
+    }
+  ],
   "expenses": [],
   "settings": {
     "siteTitle": "Social Organisation for Unity & Leisure",

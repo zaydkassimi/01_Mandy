@@ -33,6 +33,7 @@ export default function Header() {
             <>
               <a href="/calendar" className="nav-link inline-flex items-center gap-2"><Calendar size={16} />Calendar</a>
               <a href="/checkin" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Check In</a>
+              <a href="/expenses" className="nav-link inline-flex items-center gap-2">Expenses</a>
             </>
           )}
           {user ? (

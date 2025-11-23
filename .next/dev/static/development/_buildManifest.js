@@ -5,26 +5,17 @@ self.__BUILD_MANIFEST = {
   "/admin": [
     "static/chunks/pages/admin.js"
   ],
-  "/admin/attendance": [
-    "static/chunks/pages/admin/attendance.js"
-  ],
   "/admin/availability": [
     "static/chunks/pages/admin/availability.js"
   ],
   "/admin/expenses": [
     "static/chunks/pages/admin/expenses.js"
   ],
-  "/admin/export": [
-    "static/chunks/pages/admin/export.js"
-  ],
   "/admin/reports": [
     "static/chunks/pages/admin/reports.js"
   ],
   "/admin/shifts": [
     "static/chunks/pages/admin/shifts.js"
-  ],
-  "/admin/staff": [
-    "static/chunks/pages/admin/staff.js"
   ],
   "/calendar": [
     "static/chunks/pages/calendar.js"

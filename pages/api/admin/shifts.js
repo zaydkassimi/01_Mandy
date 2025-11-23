@@ -14,10 +14,10 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { title, date, start, end, capacity } = req.body || {};
+    const { title, date, start, end, capacity, location } = req.body || {};
     if (!title || !date) return res.status(400).json({ ok: false, message: "title & date required" });
     const id = String(Date.now()) + "-" + Math.floor(Math.random() * 1000);
-    const shift = { id, title, date, start: start || null, end: end || null, capacity: capacity || 1 };
+    const shift = { id, title, date, start: start || null, end: end || null, capacity: capacity || 1, location: location || "" };
     await addShift(shift);
     return res.json({ ok: true, shift });
   }

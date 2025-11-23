@@ -320,7 +320,7 @@ async function handler(req, res) {
         });
     }
     if (req.method === "POST") {
-        const { title, date, start, end, capacity } = req.body || {};
+        const { title, date, start, end, capacity, location } = req.body || {};
         if (!title || !date) return res.status(400).json({
             ok: false,
             message: "title & date required"
@@ -332,7 +332,8 @@ async function handler(req, res) {
             date,
             start: start || null,
             end: end || null,
-            capacity: capacity || 1
+            capacity: capacity || 1,
+            location: location || ""
         };
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$js__$5b$api$5d$__$28$ecmascript$29$__["addShift"])(shift);
         return res.json({

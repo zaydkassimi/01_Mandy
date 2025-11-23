@@ -629,6 +629,7 @@ function AdminShifts({ user }) {
     const [date, setDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [start, setStart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [end, setEnd] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [location, setLocation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [capacity, setCapacity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(1);
     const [availabilities, setAvailabilities] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const { showToast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$client$5d$__$28$ecmascript$29$__["ToastContext"]);
@@ -661,7 +662,8 @@ function AdminShifts({ user }) {
                 date,
                 start,
                 end,
-                capacity
+                capacity,
+                location
             })
         });
         setTitle("");
@@ -717,7 +719,7 @@ function AdminShifts({ user }) {
                 children: "Manage Shifts"
             }, void 0, false, {
                 fileName: "[project]/pages/admin/shifts.js",
-                lineNumber: 59,
+                lineNumber: 60,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -731,7 +733,7 @@ function AdminShifts({ user }) {
                                 onChange: (e)=>setTitle(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 62,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -741,7 +743,7 @@ function AdminShifts({ user }) {
                                 onChange: (e)=>setDate(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 62,
+                                lineNumber: 63,
                                 columnNumber: 98
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -753,7 +755,7 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 63,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -766,8 +768,20 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 63,
+                                lineNumber: 64,
                                 columnNumber: 116
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                placeholder: "location",
+                                value: location,
+                                onChange: (e)=>setLocation(e.target.value),
+                                style: {
+                                    marginLeft: 8
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/pages/admin/shifts.js",
+                                lineNumber: 65,
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "number",
@@ -779,7 +793,7 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 64,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -791,13 +805,13 @@ function AdminShifts({ user }) {
                                 children: "Add Shift"
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 65,
+                                lineNumber: 67,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/shifts.js",
-                        lineNumber: 61,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
@@ -813,46 +827,46 @@ function AdminShifts({ user }) {
                                             children: "Title"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 68,
+                                            lineNumber: 70,
                                             columnNumber: 22
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             children: "Date"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 68,
+                                            lineNumber: 70,
                                             columnNumber: 36
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             children: "Time"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 68,
+                                            lineNumber: 70,
                                             columnNumber: 49
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             children: "Cap"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 68,
+                                            lineNumber: 70,
                                             columnNumber: 62
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             children: "Action"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 68,
+                                            lineNumber: 70,
                                             columnNumber: 74
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/admin/shifts.js",
-                                    lineNumber: 68,
+                                    lineNumber: 70,
                                     columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 68,
+                                lineNumber: 70,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -865,7 +879,7 @@ function AdminShifts({ user }) {
                                                 children: s.title
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 72,
+                                                lineNumber: 74,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -875,7 +889,7 @@ function AdminShifts({ user }) {
                                                 children: s.date
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 73,
+                                                lineNumber: 75,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -885,11 +899,13 @@ function AdminShifts({ user }) {
                                                 children: [
                                                     s.start,
                                                     " - ",
-                                                    s.end
+                                                    s.end,
+                                                    " ",
+                                                    s.location ? `• ${s.location}` : ""
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 74,
+                                                lineNumber: 76,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -899,7 +915,7 @@ function AdminShifts({ user }) {
                                                 children: s.capacity
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 75,
+                                                lineNumber: 77,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -913,7 +929,7 @@ function AdminShifts({ user }) {
                                                         children: "Delete"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/admin/shifts.js",
-                                                        lineNumber: 77,
+                                                        lineNumber: 79,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -930,7 +946,7 @@ function AdminShifts({ user }) {
                                                                         children: "Assign staff"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/admin/shifts.js",
-                                                                        lineNumber: 80,
+                                                                        lineNumber: 82,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     availabilities.filter((a)=>a.date === s.date).map((a)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -938,13 +954,13 @@ function AdminShifts({ user }) {
                                                                             children: a.email
                                                                         }, a.email, false, {
                                                                             fileName: "[project]/pages/admin/shifts.js",
-                                                                            lineNumber: 81,
+                                                                            lineNumber: 83,
                                                                             columnNumber: 79
                                                                         }, this))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                                lineNumber: 79,
+                                                                lineNumber: 81,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -959,52 +975,52 @@ function AdminShifts({ user }) {
                                                                 children: "Assign"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                                lineNumber: 83,
+                                                                lineNumber: 85,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/admin/shifts.js",
-                                                        lineNumber: 78,
+                                                        lineNumber: 80,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 76,
+                                                lineNumber: 78,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, s.id, true, {
                                         fileName: "[project]/pages/admin/shifts.js",
-                                        lineNumber: 71,
+                                        lineNumber: 73,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 69,
+                                lineNumber: 71,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/shifts.js",
-                        lineNumber: 67,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/shifts.js",
-                lineNumber: 60,
+                lineNumber: 61,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/admin/shifts.js",
-        lineNumber: 58,
+        lineNumber: 59,
         columnNumber: 5
     }, this);
 }
-_s(AdminShifts, "rlE9VvhBgaz4aTIt6K436QERSVs=");
+_s(AdminShifts, "wY6pPq3w+MW9uePMvmJ75Io0R2o=");
 _c = AdminShifts;
 var _c;
 __turbopack_context__.k.register(_c, "AdminShifts");
