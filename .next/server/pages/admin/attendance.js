@@ -1,0 +1,10 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/pages/admin/attendance.js")
+R.c("server/chunks/ssr/[root-of-the-server]__2f1bb192._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__33abe4b8._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__dd7cc552._.js")
+R.c("server/chunks/ssr/node_modules_next_5f45e247._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__68d47023._.js")
+R.c("server/chunks/ssr/[externals]_fs_54ffce70._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__84bf4486._.js")
+R.m(1094)
+module.exports=R.m(1094).exports

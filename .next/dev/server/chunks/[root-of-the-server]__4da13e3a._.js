@@ -94,6 +94,8 @@ __turbopack_context__.s([
     ()=>addShift,
     "addUser",
     ()=>addUser,
+    "assignUserToShift",
+    ()=>assignUserToShift,
     "deleteShiftById",
     ()=>deleteShiftById,
     "deleteUserByEmail",
@@ -102,6 +104,8 @@ __turbopack_context__.s([
     ()=>findUserByEmail,
     "getAllAttendances",
     ()=>getAllAttendances,
+    "getAllAvailabilities",
+    ()=>getAllAvailabilities,
     "getAttendanceByEmail",
     ()=>getAttendanceByEmail,
     "getAvailabilitiesByEmail",
@@ -120,6 +124,8 @@ __turbopack_context__.s([
     ()=>setAttendanceApproved,
     "setAvailability",
     ()=>setAvailability,
+    "setExpenseApproved",
+    ()=>setExpenseApproved,
     "setSettings",
     ()=>setSettings,
     "writeDB",
@@ -229,6 +235,14 @@ async function listExpenses() {
 async function addExpense(exp) {
     const db = await readDB();
     db.expenses = db.expenses || [];
+    // initialize history
+    exp.history = exp.history || [
+        {
+            ts: new Date().toISOString(),
+            action: "submitted",
+            by: exp.email
+        }
+    ];
     db.expenses.push(exp);
     await writeDB(db);
     return exp;
@@ -246,6 +260,35 @@ async function setSettings(settings) {
     db.settings = Object.assign(db.settings || {}, settings);
     await writeDB(db);
     return db.settings;
+}
+async function getAllAvailabilities() {
+    const db = await readDB();
+    db.availabilities = db.availabilities || [];
+    return db.availabilities;
+}
+async function assignUserToShift(shiftId, email) {
+    const db = await readDB();
+    db.shifts = db.shifts || [];
+    const shift = db.shifts.find((s)=>s.id === shiftId);
+    if (!shift) return false;
+    shift.assigned = shift.assigned || [];
+    if (!shift.assigned.includes(email)) shift.assigned.push(email);
+    await writeDB(db);
+    return true;
+}
+async function setExpenseApproved(id, approved) {
+    const db = await readDB();
+    db.expenses = db.expenses || [];
+    const rec = db.expenses.find((r)=>r.id === id);
+    if (!rec) return false;
+    rec.approved = !!approved;
+    rec.history = rec.history || [];
+    rec.history.push({
+        ts: new Date().toISOString(),
+        action: approved ? "approved" : "revoked"
+    });
+    await writeDB(db);
+    return true;
 }
 }),
 "[project]/pages/api/admin/expenses.js [api] (ecmascript)", ((__turbopack_context__) => {

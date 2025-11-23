@@ -1,0 +1,287 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/attendance",
+      "regex": "^/admin/attendance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/attendance(?:/)?$"
+    },
+    {
+      "page": "/admin/availability",
+      "regex": "^/admin/availability(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/availability(?:/)?$"
+    },
+    {
+      "page": "/admin/expenses",
+      "regex": "^/admin/expenses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/expenses(?:/)?$"
+    },
+    {
+      "page": "/admin/export",
+      "regex": "^/admin/export(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/export(?:/)?$"
+    },
+    {
+      "page": "/admin/reports",
+      "regex": "^/admin/reports(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/reports(?:/)?$"
+    },
+    {
+      "page": "/admin/shifts",
+      "regex": "^/admin/shifts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/shifts(?:/)?$"
+    },
+    {
+      "page": "/admin/staff",
+      "regex": "^/admin/staff(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/staff(?:/)?$"
+    },
+    {
+      "page": "/api/admin/assign_shift",
+      "regex": "^/api/admin/assign_shift(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/assign_shift(?:/)?$"
+    },
+    {
+      "page": "/api/admin/availability",
+      "regex": "^/api/admin/availability(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/availability(?:/)?$"
+    },
+    {
+      "page": "/api/admin/expenses",
+      "regex": "^/api/admin/expenses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/expenses(?:/)?$"
+    },
+    {
+      "page": "/api/admin/expenses/approve",
+      "regex": "^/api/admin/expenses/approve(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/expenses/approve(?:/)?$"
+    },
+    {
+      "page": "/api/admin/settings",
+      "regex": "^/api/admin/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/settings(?:/)?$"
+    },
+    {
+      "page": "/api/admin/shifts",
+      "regex": "^/api/admin/shifts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/shifts(?:/)?$"
+    },
+    {
+      "page": "/api/admin/users",
+      "regex": "^/api/admin/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/users(?:/)?$"
+    },
+    {
+      "page": "/api/attendance",
+      "regex": "^/api/attendance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/attendance(?:/)?$"
+    },
+    {
+      "page": "/api/attendance/approve",
+      "regex": "^/api/attendance/approve(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/attendance/approve(?:/)?$"
+    },
+    {
+      "page": "/api/auth/login",
+      "regex": "^/api/auth/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/login(?:/)?$"
+    },
+    {
+      "page": "/api/auth/logout",
+      "regex": "^/api/auth/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/logout(?:/)?$"
+    },
+    {
+      "page": "/api/auth/signup",
+      "regex": "^/api/auth/signup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/signup(?:/)?$"
+    },
+    {
+      "page": "/api/availability",
+      "regex": "^/api/availability(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/availability(?:/)?$"
+    },
+    {
+      "page": "/api/expenses",
+      "regex": "^/api/expenses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/expenses(?:/)?$"
+    },
+    {
+      "page": "/api/export",
+      "regex": "^/api/export(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/export(?:/)?$"
+    },
+    {
+      "page": "/api/export_docx",
+      "regex": "^/api/export_docx(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/export_docx(?:/)?$"
+    },
+    {
+      "page": "/api/export_xlsx",
+      "regex": "^/api/export_xlsx(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/export_xlsx(?:/)?$"
+    },
+    {
+      "page": "/api/me",
+      "regex": "^/api/me(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/me(?:/)?$"
+    },
+    {
+      "page": "/api/settings",
+      "regex": "^/api/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/settings(?:/)?$"
+    },
+    {
+      "page": "/calendar",
+      "regex": "^/calendar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/calendar(?:/)?$"
+    },
+    {
+      "page": "/checkin",
+      "regex": "^/checkin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/checkin(?:/)?$"
+    },
+    {
+      "page": "/expenses",
+      "regex": "^/expenses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/expenses(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/signup",
+      "regex": "^/signup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/signup(?:/)?$"
+    }
+  ],
+  "dataRoutes": [
+    {
+      "page": "/",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/index\\.json$"
+    },
+    {
+      "page": "/admin",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin\\.json$"
+    },
+    {
+      "page": "/admin/attendance",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/attendance\\.json$"
+    },
+    {
+      "page": "/admin/availability",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/availability\\.json$"
+    },
+    {
+      "page": "/admin/expenses",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/expenses\\.json$"
+    },
+    {
+      "page": "/admin/export",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/export\\.json$"
+    },
+    {
+      "page": "/admin/reports",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/reports\\.json$"
+    },
+    {
+      "page": "/admin/shifts",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/shifts\\.json$"
+    },
+    {
+      "page": "/admin/staff",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/admin/staff\\.json$"
+    },
+    {
+      "page": "/calendar",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/calendar\\.json$"
+    },
+    {
+      "page": "/checkin",
+      "dataRouteRegex": "^/_next/data/tehjlrn8ehnHWoL0yOIfz/checkin\\.json$"
+    }
+  ],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

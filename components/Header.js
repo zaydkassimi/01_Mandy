@@ -19,12 +19,14 @@ export default function Header() {
         <div className="site-title">{settings.siteTitle || "Staff Scheduler"}</div>
 
         <nav className="site-nav" aria-label="Main navigation">
-          <a href="/" className="nav-link inline-flex items-center gap-2"><Home size={16} />Home</a>
           {user && user.role === "admin" ? (
             <>
               <a href="/admin" className="nav-link inline-flex items-center gap-2">Dashboard</a>
+              <a href="/admin/availability" className="nav-link inline-flex items-center gap-2">Availability</a>
               <a href="/admin/staff" className="nav-link inline-flex items-center gap-2">Staff</a>
               <a href="/admin/shifts" className="nav-link inline-flex items-center gap-2">Shifts</a>
+              <a href="/admin/expenses" className="nav-link inline-flex items-center gap-2">Expenses</a>
+              <a href="/admin/reports" className="nav-link inline-flex items-center gap-2">Reports</a>
               <a href="/admin/export" className="nav-link inline-flex items-center gap-2"><DownloadCloud size={16} />Export</a>
             </>
           ) : (

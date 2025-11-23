@@ -6,8 +6,8 @@ __turbopack_load_page_chunks__("/admin", [
   "static/chunks/node_modules_react_e3593a73._.js",
   "static/chunks/node_modules_react-dom_cjs_react-dom_development_2b5e0eb3.js",
   "static/chunks/node_modules_react-dom_8a8085df._.js",
-  "static/chunks/node_modules_416396d1._.js",
-  "static/chunks/[root-of-the-server]__b66a68eb._.js",
+  "static/chunks/node_modules_9aef90a1._.js",
+  "static/chunks/[root-of-the-server]__6099907b._.js",
   "static/chunks/pages_admin_index_2da965e7.js",
-  "static/chunks/turbopack-pages_admin_index_4e18e818.js"
+  "static/chunks/turbopack-pages_admin_index_70299730.js"
 ])

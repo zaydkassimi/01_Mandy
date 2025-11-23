@@ -1,6 +1,7 @@
 import { parse } from "cookie";
 import { verifyToken } from "../../lib/auth";
 import { listUsers, listShifts, getAllAttendances, listExpenses } from "../../lib/db";
+import Button from "../../components/ui/Button";
 
 export default function Admin({ user, stats }) {
   if (!user || user.role !== "admin") {
@@ -12,6 +13,8 @@ export default function Admin({ user, stats }) {
         <h1>Admin Dashboard</h1>
         <p className="small">Overview of staff, shifts, attendance and expenses.</p>
       </div>
+
+      
 
       <section className="stats-grid" aria-label="Key metrics">
         <div className="card stat-card">

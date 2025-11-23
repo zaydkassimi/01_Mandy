@@ -1,6 +1,8 @@
 import { parse } from "cookie";
 import { verifyToken } from "../../lib/auth";
 import { useEffect, useState } from "react";
+import { ToastContext } from "../../components/ToastContext";
+import { useContext } from "react";
 
 export default function AdminShifts({ user }) {
   const [shifts, setShifts] = useState([]);
@@ -9,9 +11,12 @@ export default function AdminShifts({ user }) {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [capacity, setCapacity] = useState(1);
+  const [availabilities, setAvailabilities] = useState([]);
+  const { showToast } = useContext(ToastContext);
 
   useEffect(() => {
     fetch("/api/admin/shifts").then((r) => r.json()).then((d) => { if (d.ok) setShifts(d.shifts || []); });
+    fetch("/api/admin/availability").then((r) => r.json()).then((d) => { if (d.ok) setAvailabilities(d.availabilities || []); });
   }, []);
 
   async function add() {
@@ -29,6 +34,24 @@ export default function AdminShifts({ user }) {
     if (!confirm("Delete shift?")) return;
     await fetch("/api/admin/shifts", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) });
     setShifts((s) => s.filter((sh) => sh.id !== id));
+  }
+
+  async function assignToShift(shiftId, email) {
+    if (!email) return alert("Choose a staff email");
+    const res = await fetch("/api/admin/assign_shift", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shiftId, email })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      showToast("Assigned");
+      // refresh shifts
+      const res2 = await fetch("/api/admin/shifts"); const j = await res2.json();
+      if (j.ok) setShifts(j.shifts || []);
+    } else {
+      showToast("Assign failed", { type: "error" });
+    }
   }
 
   return (
@@ -50,7 +73,19 @@ export default function AdminShifts({ user }) {
                 <td style={{ padding: 8 }}>{s.date}</td>
                 <td style={{ padding: 8 }}>{s.start} - {s.end}</td>
                 <td style={{ padding: 8 }}>{s.capacity}</td>
-                <td style={{ padding: 8 }}><button className="btn secondary" onClick={() => del(s.id)}>Delete</button></td>
+                <td style={{ padding: 8 }}>
+                  <button className="btn secondary" onClick={() => del(s.id)}>Delete</button>
+                  <div style={{ marginTop: 8 }}>
+                    <select id={"assign-"+s.id} defaultValue="">
+                      <option value="">Assign staff</option>
+                      {availabilities.filter(a => a.date === s.date).map(a => <option key={a.email} value={a.email}>{a.email}</option>)}
+                    </select>
+                    <button className="btn" style={{ marginLeft: 8 }} onClick={() => {
+                      const sel = document.getElementById("assign-"+s.id);
+                      assignToShift(s.id, sel?.value);
+                    }}>Assign</button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

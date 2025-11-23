@@ -1,0 +1,108 @@
+{
+  "pages": {
+    "/": [
+      "static/chunks/81047185312e8f6c.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-9b2779fc1d368664.js"
+    ],
+    "/_app": [
+      "static/chunks/d1a969b3df81151a.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/270405f09bdb08d3.css",
+      "static/chunks/turbopack-13aacee064f7c08c.js"
+    ],
+    "/_error": [
+      "static/chunks/910e82107c46ea9a.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-b3e19a90d7d44dce.js"
+    ],
+    "/admin": [
+      "static/chunks/53101bbb599fc4a2.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-0e1d318c7059e899.js"
+    ],
+    "/admin/attendance": [
+      "static/chunks/5be10b18b3a28287.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-38be26d3ef13294a.js"
+    ],
+    "/admin/availability": [
+      "static/chunks/52eea4c76693c8d0.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-3c96cecc997212d1.js"
+    ],
+    "/admin/expenses": [
+      "static/chunks/0eb0d1b46ac3c65c.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-57525b1aa9885c7a.js"
+    ],
+    "/admin/export": [
+      "static/chunks/2991bab84d9d3ad1.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-d519fe904033a464.js"
+    ],
+    "/admin/reports": [
+      "static/chunks/8ea951dfbbb2fc63.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-b2ef965c4cea47e5.js"
+    ],
+    "/admin/shifts": [
+      "static/chunks/e2a05e426d2e2f6d.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-db687ef16b13e14f.js"
+    ],
+    "/admin/staff": [
+      "static/chunks/546c3a09761785e9.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-cd04b631109c2e97.js"
+    ],
+    "/calendar": [
+      "static/chunks/63be99b5ace829c8.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-2f3dd78b5860ca46.js"
+    ],
+    "/checkin": [
+      "static/chunks/410eb6f0c365345d.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-b473bb3fbe8443cb.js"
+    ],
+    "/expenses": [
+      "static/chunks/f99fdb83f8029535.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-405706fd9a296b2c.js"
+    ],
+    "/login": [
+      "static/chunks/985d7c937b8ff56a.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-8a461e24618acd88.js"
+    ],
+    "/signup": [
+      "static/chunks/d23e36a61d1a05d9.js",
+      "static/chunks/d0f7b1756a731ac8.js",
+      "static/chunks/3b01f292473d19ab.js",
+      "static/chunks/turbopack-1cb153b446b06aa5.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/tehjlrn8ehnHWoL0yOIfz/_ssgManifest.js",
+    "static/tehjlrn8ehnHWoL0yOIfz/_buildManifest.js"
+  ],
+  "rootMainFiles": []
+}

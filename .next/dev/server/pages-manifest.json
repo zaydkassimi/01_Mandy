@@ -4,7 +4,15 @@
   "/_document": "pages/_document.js",
   "/admin": "pages/admin.js",
   "/admin/attendance": "pages/admin/attendance.js",
+  "/admin/availability": "pages/admin/availability.js",
+  "/admin/expenses": "pages/admin/expenses.js",
+  "/admin/export": "pages/admin/export.js",
+  "/admin/reports": "pages/admin/reports.js",
+  "/admin/shifts": "pages/admin/shifts.js",
   "/admin/staff": "pages/admin/staff.js",
+  "/api/admin/availability": "pages/api/admin/availability.js",
+  "/api/admin/expenses": "pages/api/admin/expenses.js",
+  "/api/admin/shifts": "pages/api/admin/shifts.js",
   "/api/admin/users": "pages/api/admin/users.js",
   "/api/attendance": "pages/api/attendance.js",
   "/api/auth/login": "pages/api/auth/login.js",
@@ -14,5 +22,6 @@
   "/api/settings": "pages/api/settings.js",
   "/calendar": "pages/calendar.js",
   "/checkin": "pages/checkin.js",
+  "/expenses": "pages/expenses.js",
   "/login": "pages/login.js"
 }

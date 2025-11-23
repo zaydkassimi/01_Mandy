@@ -1,0 +1,3 @@
+{
+  "/api/attendance/approve": "pages/api/attendance/approve.js"
+}

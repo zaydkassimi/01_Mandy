@@ -71,6 +71,9 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 var __TURBOPACK__imported__module__$5b$externals$5d2f$cookie__$5b$external$5d$__$28$cookie$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/cookie [external] (cookie, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ToastContext.js [ssr] (ecmascript)");
+;
+;
 ;
 ;
 ;
@@ -82,9 +85,14 @@ function AdminShifts({ user }) {
     const [start, setStart] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])("");
     const [end, setEnd] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])("");
     const [capacity, setCapacity] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(1);
+    const [availabilities, setAvailabilities] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])([]);
+    const { showToast } = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["ToastContext"]);
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         fetch("/api/admin/shifts").then((r)=>r.json()).then((d)=>{
             if (d.ok) setShifts(d.shifts || []);
+        });
+        fetch("/api/admin/availability").then((r)=>r.json()).then((d)=>{
+            if (d.ok) setAvailabilities(d.availabilities || []);
         });
     }, []);
     async function add() {
@@ -123,13 +131,38 @@ function AdminShifts({ user }) {
         });
         setShifts((s)=>s.filter((sh)=>sh.id !== id));
     }
+    async function assignToShift(shiftId, email) {
+        if (!email) return alert("Choose a staff email");
+        const res = await fetch("/api/admin/assign_shift", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                shiftId,
+                email
+            })
+        });
+        const data = await res.json();
+        if (data.ok) {
+            showToast("Assigned");
+            // refresh shifts
+            const res2 = await fetch("/api/admin/shifts");
+            const j = await res2.json();
+            if (j.ok) setShifts(j.shifts || []);
+        } else {
+            showToast("Assign failed", {
+                type: "error"
+            });
+        }
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("main", {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
                 children: "Manage Shifts"
             }, void 0, false, {
                 fileName: "[project]/pages/admin/shifts.js",
-                lineNumber: 36,
+                lineNumber: 59,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -143,7 +176,7 @@ function AdminShifts({ user }) {
                                 onChange: (e)=>setTitle(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 39,
+                                lineNumber: 62,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -153,7 +186,7 @@ function AdminShifts({ user }) {
                                 onChange: (e)=>setDate(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 39,
+                                lineNumber: 62,
                                 columnNumber: 98
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -165,7 +198,7 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 40,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -178,7 +211,7 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 40,
+                                lineNumber: 63,
                                 columnNumber: 116
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -191,7 +224,7 @@ function AdminShifts({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 41,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -203,13 +236,13 @@ function AdminShifts({ user }) {
                                 children: "Add Shift"
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 42,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/shifts.js",
-                        lineNumber: 38,
+                        lineNumber: 61,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("table", {
@@ -225,46 +258,46 @@ function AdminShifts({ user }) {
                                             children: "Title"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 45,
+                                            lineNumber: 68,
                                             columnNumber: 22
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Date"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 45,
+                                            lineNumber: 68,
                                             columnNumber: 36
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Time"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 45,
+                                            lineNumber: 68,
                                             columnNumber: 49
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Cap"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 45,
+                                            lineNumber: 68,
                                             columnNumber: 62
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Action"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/shifts.js",
-                                            lineNumber: 45,
+                                            lineNumber: 68,
                                             columnNumber: 74
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/admin/shifts.js",
-                                    lineNumber: 45,
+                                    lineNumber: 68,
                                     columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 45,
+                                lineNumber: 68,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tbody", {
@@ -277,7 +310,7 @@ function AdminShifts({ user }) {
                                                 children: s.title
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 49,
+                                                lineNumber: 72,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -287,7 +320,7 @@ function AdminShifts({ user }) {
                                                 children: s.date
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 50,
+                                                lineNumber: 73,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -301,7 +334,7 @@ function AdminShifts({ user }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 51,
+                                                lineNumber: 74,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -311,54 +344,108 @@ function AdminShifts({ user }) {
                                                 children: s.capacity
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 52,
+                                                lineNumber: 75,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
                                                 style: {
                                                     padding: 8
                                                 },
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
-                                                    className: "btn secondary",
-                                                    onClick: ()=>del(s.id),
-                                                    children: "Delete"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/pages/admin/shifts.js",
-                                                    lineNumber: 53,
-                                                    columnNumber: 44
-                                                }, this)
-                                            }, void 0, false, {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                        className: "btn secondary",
+                                                        onClick: ()=>del(s.id),
+                                                        children: "Delete"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/pages/admin/shifts.js",
+                                                        lineNumber: 77,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                        style: {
+                                                            marginTop: 8
+                                                        },
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
+                                                                id: "assign-" + s.id,
+                                                                defaultValue: "",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
+                                                                        value: "",
+                                                                        children: "Assign staff"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/pages/admin/shifts.js",
+                                                                        lineNumber: 80,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    availabilities.filter((a)=>a.date === s.date).map((a)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
+                                                                            value: a.email,
+                                                                            children: a.email
+                                                                        }, a.email, false, {
+                                                                            fileName: "[project]/pages/admin/shifts.js",
+                                                                            lineNumber: 81,
+                                                                            columnNumber: 79
+                                                                        }, this))
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/pages/admin/shifts.js",
+                                                                lineNumber: 79,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                                className: "btn",
+                                                                style: {
+                                                                    marginLeft: 8
+                                                                },
+                                                                onClick: ()=>{
+                                                                    const sel = document.getElementById("assign-" + s.id);
+                                                                    assignToShift(s.id, sel?.value);
+                                                                },
+                                                                children: "Assign"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/admin/shifts.js",
+                                                                lineNumber: 83,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/pages/admin/shifts.js",
+                                                        lineNumber: 78,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/pages/admin/shifts.js",
-                                                lineNumber: 53,
+                                                lineNumber: 76,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, s.id, true, {
                                         fileName: "[project]/pages/admin/shifts.js",
-                                        lineNumber: 48,
+                                        lineNumber: 71,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/shifts.js",
-                                lineNumber: 46,
+                                lineNumber: 69,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/shifts.js",
-                        lineNumber: 44,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/shifts.js",
-                lineNumber: 37,
+                lineNumber: 60,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/admin/shifts.js",
-        lineNumber: 35,
+        lineNumber: 58,
         columnNumber: 5
     }, this);
 }

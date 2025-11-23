@@ -1,0 +1,3 @@
+{
+  "/api/admin/expenses": "pages/api/admin/expenses.js"
+}

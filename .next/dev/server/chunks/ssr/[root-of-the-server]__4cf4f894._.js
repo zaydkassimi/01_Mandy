@@ -70,6 +70,8 @@ __turbopack_context__.s([
     ()=>addShift,
     "addUser",
     ()=>addUser,
+    "assignUserToShift",
+    ()=>assignUserToShift,
     "deleteShiftById",
     ()=>deleteShiftById,
     "deleteUserByEmail",
@@ -78,6 +80,8 @@ __turbopack_context__.s([
     ()=>findUserByEmail,
     "getAllAttendances",
     ()=>getAllAttendances,
+    "getAllAvailabilities",
+    ()=>getAllAvailabilities,
     "getAttendanceByEmail",
     ()=>getAttendanceByEmail,
     "getAvailabilitiesByEmail",
@@ -96,6 +100,8 @@ __turbopack_context__.s([
     ()=>setAttendanceApproved,
     "setAvailability",
     ()=>setAvailability,
+    "setExpenseApproved",
+    ()=>setExpenseApproved,
     "setSettings",
     ()=>setSettings,
     "writeDB",
@@ -205,6 +211,14 @@ async function listExpenses() {
 async function addExpense(exp) {
     const db = await readDB();
     db.expenses = db.expenses || [];
+    // initialize history
+    exp.history = exp.history || [
+        {
+            ts: new Date().toISOString(),
+            action: "submitted",
+            by: exp.email
+        }
+    ];
     db.expenses.push(exp);
     await writeDB(db);
     return exp;
@@ -223,6 +237,35 @@ async function setSettings(settings) {
     await writeDB(db);
     return db.settings;
 }
+async function getAllAvailabilities() {
+    const db = await readDB();
+    db.availabilities = db.availabilities || [];
+    return db.availabilities;
+}
+async function assignUserToShift(shiftId, email) {
+    const db = await readDB();
+    db.shifts = db.shifts || [];
+    const shift = db.shifts.find((s)=>s.id === shiftId);
+    if (!shift) return false;
+    shift.assigned = shift.assigned || [];
+    if (!shift.assigned.includes(email)) shift.assigned.push(email);
+    await writeDB(db);
+    return true;
+}
+async function setExpenseApproved(id, approved) {
+    const db = await readDB();
+    db.expenses = db.expenses || [];
+    const rec = db.expenses.find((r)=>r.id === id);
+    if (!rec) return false;
+    rec.approved = !!approved;
+    rec.history = rec.history || [];
+    rec.history.push({
+        ts: new Date().toISOString(),
+        action: approved ? "approved" : "revoked"
+    });
+    await writeDB(db);
+    return true;
+}
 }),
 "[project]/pages/admin/index.js [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -237,6 +280,8 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 var __TURBOPACK__imported__module__$5b$externals$5d2f$cookie__$5b$external$5d$__$28$cookie$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/cookie [external] (cookie, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/db.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$Button$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/Button.js [ssr] (ecmascript)");
+;
 ;
 ;
 ;
@@ -248,12 +293,12 @@ function Admin({ user, stats }) {
                 children: "403 - forbidden"
             }, void 0, false, {
                 fileName: "[project]/pages/admin/index.js",
-                lineNumber: 7,
+                lineNumber: 8,
                 columnNumber: 18
             }, this)
         }, void 0, false, {
             fileName: "[project]/pages/admin/index.js",
-            lineNumber: 7,
+            lineNumber: 8,
             columnNumber: 12
         }, this);
     }
@@ -266,7 +311,7 @@ function Admin({ user, stats }) {
                         children: "Admin Dashboard"
                     }, void 0, false, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 12,
+                        lineNumber: 13,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -274,13 +319,13 @@ function Admin({ user, stats }) {
                         children: "Overview of staff, shifts, attendance and expenses."
                     }, void 0, false, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 13,
+                        lineNumber: 14,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/index.js",
-                lineNumber: 11,
+                lineNumber: 12,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
@@ -298,7 +343,7 @@ function Admin({ user, stats }) {
                                         children: "Total staff"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 19,
+                                        lineNumber: 22,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -306,13 +351,13 @@ function Admin({ user, stats }) {
                                         children: stats.totalUsers
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 20,
+                                        lineNumber: 23,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 18,
+                                lineNumber: 21,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -322,18 +367,18 @@ function Admin({ user, stats }) {
                                     children: "Manage Staff"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/admin/index.js",
-                                    lineNumber: 23,
+                                    lineNumber: 26,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 22,
+                                lineNumber: 25,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 17,
+                        lineNumber: 20,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -347,7 +392,7 @@ function Admin({ user, stats }) {
                                         children: "Total shifts"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 29,
+                                        lineNumber: 32,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -355,13 +400,13 @@ function Admin({ user, stats }) {
                                         children: stats.totalShifts
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 30,
+                                        lineNumber: 33,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 28,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -371,18 +416,18 @@ function Admin({ user, stats }) {
                                     children: "Manage Shifts"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/admin/index.js",
-                                    lineNumber: 33,
+                                    lineNumber: 36,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 32,
+                                lineNumber: 35,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 27,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -396,7 +441,7 @@ function Admin({ user, stats }) {
                                         children: "Attendance records"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 39,
+                                        lineNumber: 42,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -404,13 +449,13 @@ function Admin({ user, stats }) {
                                         children: stats.totalAttendances
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 40,
+                                        lineNumber: 43,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 38,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -420,18 +465,18 @@ function Admin({ user, stats }) {
                                     children: "View Attendance"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/admin/index.js",
-                                    lineNumber: 43,
+                                    lineNumber: 46,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 42,
+                                lineNumber: 45,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 37,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -445,7 +490,7 @@ function Admin({ user, stats }) {
                                         children: "Total expenses"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 49,
+                                        lineNumber: 52,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -456,13 +501,13 @@ function Admin({ user, stats }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/admin/index.js",
-                                        lineNumber: 50,
+                                        lineNumber: 53,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 48,
+                                lineNumber: 51,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -472,24 +517,24 @@ function Admin({ user, stats }) {
                                     children: "Expenses"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/admin/index.js",
-                                    lineNumber: 53,
+                                    lineNumber: 56,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/index.js",
-                                lineNumber: 52,
+                                lineNumber: 55,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/index.js",
-                        lineNumber: 47,
+                        lineNumber: 50,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/index.js",
-                lineNumber: 16,
+                lineNumber: 19,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
@@ -509,13 +554,13 @@ function Admin({ user, stats }) {
                                     children: user.email
                                 }, void 0, false, {
                                     fileName: "[project]/pages/admin/index.js",
-                                    lineNumber: 60,
+                                    lineNumber: 63,
                                     columnNumber: 46
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/admin/index.js",
-                            lineNumber: 60,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -526,24 +571,24 @@ function Admin({ user, stats }) {
                             children: "Use the tiles above to manage staff, shifts, attendance and expenses. Visit the Export page to download data."
                         }, void 0, false, {
                             fileName: "[project]/pages/admin/index.js",
-                            lineNumber: 61,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/admin/index.js",
-                    lineNumber: 59,
+                    lineNumber: 62,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/admin/index.js",
-                lineNumber: 58,
+                lineNumber: 61,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/admin/index.js",
-        lineNumber: 10,
+        lineNumber: 11,
         columnNumber: 5
     }, this);
 }

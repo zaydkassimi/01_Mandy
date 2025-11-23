@@ -1,0 +1,6 @@
+__turbopack_load_page_chunks__("/admin/availability", [
+  "static/chunks/52eea4c76693c8d0.js",
+  "static/chunks/d0f7b1756a731ac8.js",
+  "static/chunks/3b01f292473d19ab.js",
+  "static/chunks/turbopack-3c96cecc997212d1.js"
+])

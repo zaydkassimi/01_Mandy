@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Header from "../components/Header";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { ToastProvider } from "../components/ToastContext";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -13,9 +14,11 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       {!hideHeader && <Header />}
-      <main className="container">
-        <Component {...pageProps} />
-      </main>
+      <ToastProvider>
+        <main className="container">
+          <Component {...pageProps} />
+        </main>
+      </ToastProvider>
     </>
   );
 }

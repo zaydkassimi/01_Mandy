@@ -1,0 +1,3 @@
+{
+  "/api/admin/expenses/approve": "pages/api/admin/expenses/approve.js"
+}

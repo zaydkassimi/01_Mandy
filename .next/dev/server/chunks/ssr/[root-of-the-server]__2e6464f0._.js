@@ -84,6 +84,9 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$cookie__$5b$external$5d$__
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth.js [ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$format$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/format.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ToastContext.js [ssr] (ecmascript)");
+;
+;
 ;
 ;
 ;
@@ -118,13 +121,54 @@ function AdminExpenses({ user }) {
         const j = await res.json();
         if (j.ok) setList(j.expenses || []);
     }
+    async function approve(id, approve) {
+        await fetch("/api/admin/expenses/approve", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id,
+                approved: approve
+            })
+        });
+        setList((s)=>s.map((e)=>e.id === id ? {
+                    ...e,
+                    approved: approve
+                } : e));
+    }
+    const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])("");
+    async function approveWithMessage(id, approve) {
+        setMessage("");
+        await fetch("/api/admin/expenses/approve", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id,
+                approved: approve
+            })
+        });
+        setList((s)=>s.map((e)=>e.id === id ? {
+                    ...e,
+                    approved: approve
+                } : e));
+        const msg = approve ? "Expense approved" : "Expense approval revoked";
+        setMessage(msg);
+        showToast(msg, {
+            type: approve ? "info" : "info"
+        });
+        setTimeout(()=>setMessage(""), 3500);
+    }
+    const { showToast } = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ToastContext$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["ToastContext"]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("main", {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
                 children: "Expenses"
             }, void 0, false, {
                 fileName: "[project]/pages/admin/expenses.js",
-                lineNumber: 29,
+                lineNumber: 56,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -138,7 +182,7 @@ function AdminExpenses({ user }) {
                                 onChange: (e)=>setDate(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 32,
+                                lineNumber: 59,
                                 columnNumber: 11
                             }, this),
                             " ",
@@ -148,7 +192,7 @@ function AdminExpenses({ user }) {
                                 onChange: (e)=>setAmount(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 32,
+                                lineNumber: 59,
                                 columnNumber: 88
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -160,7 +204,7 @@ function AdminExpenses({ user }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 33,
+                                lineNumber: 60,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -172,13 +216,13 @@ function AdminExpenses({ user }) {
                                 children: "Add"
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 34,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/expenses.js",
-                        lineNumber: 31,
+                        lineNumber: 58,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("table", {
@@ -194,32 +238,46 @@ function AdminExpenses({ user }) {
                                             children: "Date"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/expenses.js",
-                                            lineNumber: 37,
+                                            lineNumber: 64,
                                             columnNumber: 22
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Amount (GBP)"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/expenses.js",
-                                            lineNumber: 37,
+                                            lineNumber: 64,
                                             columnNumber: 35
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
                                             children: "Note"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/admin/expenses.js",
-                                            lineNumber: 37,
+                                            lineNumber: 64,
                                             columnNumber: 56
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
+                                            children: "By"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/admin/expenses.js",
+                                            lineNumber: 64,
+                                            columnNumber: 69
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
+                                            children: "Approved"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/admin/expenses.js",
+                                            lineNumber: 64,
+                                            columnNumber: 80
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/admin/expenses.js",
-                                    lineNumber: 37,
+                                    lineNumber: 64,
                                     columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 37,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tbody", {
@@ -232,7 +290,7 @@ function AdminExpenses({ user }) {
                                                 children: e.date
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/expenses.js",
-                                                lineNumber: 41,
+                                                lineNumber: 68,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -242,46 +300,162 @@ function AdminExpenses({ user }) {
                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$format$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["formatGBP"])(e.amount)
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/expenses.js",
-                                                lineNumber: 42,
+                                                lineNumber: 69,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
                                                 style: {
                                                     padding: 8
                                                 },
-                                                children: e.note
+                                                children: [
+                                                    e.note,
+                                                    e.receipt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                        className: "mt-2",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                                                            href: e.receipt,
+                                                            target: "_blank",
+                                                            rel: "noreferrer",
+                                                            className: "text-sm text-blue-600",
+                                                            children: "View receipt"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/pages/admin/expenses.js",
+                                                            lineNumber: 72,
+                                                            columnNumber: 55
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/pages/admin/expenses.js",
+                                                        lineNumber: 72,
+                                                        columnNumber: 33
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/pages/admin/expenses.js",
+                                                lineNumber: 70,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                style: {
+                                                    padding: 8
+                                                },
+                                                children: e.email
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/admin/expenses.js",
-                                                lineNumber: 43,
+                                                lineNumber: 74,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
+                                                style: {
+                                                    padding: 8
+                                                },
+                                                children: [
+                                                    e.approved ? "Yes" : "No",
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                        style: {
+                                                            marginTop: 6
+                                                        },
+                                                        children: [
+                                                            !e.approved && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                                className: "btn",
+                                                                onClick: ()=>approveWithMessage(e.id, true),
+                                                                children: "Approve"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/admin/expenses.js",
+                                                                lineNumber: 78,
+                                                                columnNumber: 37
+                                                            }, this),
+                                                            e.approved && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                                                className: "btn secondary",
+                                                                onClick: ()=>approveWithMessage(e.id, false),
+                                                                children: "Revoke"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/admin/expenses.js",
+                                                                lineNumber: 79,
+                                                                columnNumber: 36
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/pages/admin/expenses.js",
+                                                        lineNumber: 77,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    e.history && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                        style: {
+                                                            marginTop: 8
+                                                        },
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                                                                className: "small",
+                                                                children: "History:"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/admin/expenses.js",
+                                                                lineNumber: 83,
+                                                                columnNumber: 23
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
+                                                                className: "text-xs text-gray-600",
+                                                                children: e.history.map((h, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
+                                                                        children: [
+                                                                            h.ts,
+                                                                            ": ",
+                                                                            h.action
+                                                                        ]
+                                                                    }, i, true, {
+                                                                        fileName: "[project]/pages/admin/expenses.js",
+                                                                        lineNumber: 85,
+                                                                        columnNumber: 50
+                                                                    }, this))
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/pages/admin/expenses.js",
+                                                                lineNumber: 84,
+                                                                columnNumber: 23
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/pages/admin/expenses.js",
+                                                        lineNumber: 82,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/pages/admin/expenses.js",
+                                                lineNumber: 75,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, e.id, true, {
                                         fileName: "[project]/pages/admin/expenses.js",
-                                        lineNumber: 40,
+                                        lineNumber: 67,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/pages/admin/expenses.js",
-                                lineNumber: 38,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/admin/expenses.js",
-                        lineNumber: 36,
+                        lineNumber: 63,
                         columnNumber: 9
+                    }, this),
+                    message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "mt-3 p-3 rounded-md bg-green-50 text-green-800",
+                        children: message
+                    }, void 0, false, {
+                        fileName: "[project]/pages/admin/expenses.js",
+                        lineNumber: 94,
+                        columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/admin/expenses.js",
-                lineNumber: 30,
+                lineNumber: 57,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/admin/expenses.js",
-        lineNumber: 28,
+        lineNumber: 55,
         columnNumber: 5
     }, this);
 }

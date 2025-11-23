@@ -1,0 +1,6 @@
+__turbopack_load_page_chunks__("/expenses", [
+  "static/chunks/f99fdb83f8029535.js",
+  "static/chunks/d0f7b1756a731ac8.js",
+  "static/chunks/3b01f292473d19ab.js",
+  "static/chunks/turbopack-405706fd9a296b2c.js"
+])

@@ -8,6 +8,21 @@ self.__BUILD_MANIFEST = {
   "/admin/attendance": [
     "static/chunks/pages/admin/attendance.js"
   ],
+  "/admin/availability": [
+    "static/chunks/pages/admin/availability.js"
+  ],
+  "/admin/expenses": [
+    "static/chunks/pages/admin/expenses.js"
+  ],
+  "/admin/export": [
+    "static/chunks/pages/admin/export.js"
+  ],
+  "/admin/reports": [
+    "static/chunks/pages/admin/reports.js"
+  ],
+  "/admin/shifts": [
+    "static/chunks/pages/admin/shifts.js"
+  ],
   "/admin/staff": [
     "static/chunks/pages/admin/staff.js"
   ],
@@ -16,6 +31,9 @@ self.__BUILD_MANIFEST = {
   ],
   "/checkin": [
     "static/chunks/pages/checkin.js"
+  ],
+  "/expenses": [
+    "static/chunks/pages/expenses.js"
   ],
   "/login": [
     "static/chunks/pages/login.js"
@@ -31,11 +49,16 @@ self.__BUILD_MANIFEST = {
     "/_error",
     "/admin",
     "/admin/attendance",
+    "/admin/availability",
     "/admin/expenses",
     "/admin/export",
+    "/admin/reports",
     "/admin/shifts",
     "/admin/staff",
+    "/api/admin/assign_shift",
+    "/api/admin/availability",
     "/api/admin/expenses",
+    "/api/admin/expenses/approve",
     "/api/admin/settings",
     "/api/admin/shifts",
     "/api/admin/users",
@@ -45,6 +68,7 @@ self.__BUILD_MANIFEST = {
     "/api/auth/logout",
     "/api/auth/signup",
     "/api/availability",
+    "/api/expenses",
     "/api/export",
     "/api/export_docx",
     "/api/export_xlsx",
@@ -52,6 +76,7 @@ self.__BUILD_MANIFEST = {
     "/api/settings",
     "/calendar",
     "/checkin",
+    "/expenses",
     "/login",
     "/signup"
   ]
